@@ -6,6 +6,7 @@
         font-family: Bahnschrift;
         color: white;
         margin: 0;
+        transition-duration: 5s;
     }
 
     .mainWindow {
@@ -23,7 +24,27 @@
         margin: 0;
     }
 
-    .mainWindow>h3 {
+    .page {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        padding: 0;
+        transition-duration: 5s;
+        width: 80%;
+        padding-left: 10%;
+    }
+
+    .page>h1 {
+        font-size: 10vw;
+        color: red;
+    }
+
+    .page>h2 {
+        font-size: 6vw;
+    }
+
+    .page0>h3 {
         margin: 50% 0 10% 0;
         font-size: 6vw;
     }
@@ -63,6 +84,64 @@
     #status {
         font-size: 6vw;
     }
+
+    .comment {
+        color: blue;
+    }
+
+    .page1 {
+        display: none;
+    }
+
+    .page1>h1 {
+        font-size: 10vw;
+        margin: 2%;
+    }
+
+    .page1>h2 {
+        margin-top: 10%;
+    }
+
+    .page1>img {
+        width: 80%;
+    }
+
+    .page2>h1 {
+        color: red;
+        font-size: 10vw;
+    }
+
+    .nextPageButton {
+        display: none;
+        background-color: #6B16A2;
+        position: fixed;
+        bottom: 5em;
+        right: 5em;
+        padding: 10px;
+        border-radius: 20px;
+    }
+
+    .nextPageButton>button {
+        background-color: transparent;
+        border: 0;
+        font-size: 10vw;
+    }
+
+    .prevPageButton {
+        display: none;
+        background-color: #6B16A2;
+        position: fixed;
+        bottom: 5em;
+        left: 5em;
+        padding: 10px;
+        border-radius: 20px;
+    }
+
+    .prevPageButton>button {
+        background-color: transparent;
+        border: 0;
+        font-size: 10vw;
+    }
 </style>
 
 <head>
@@ -71,36 +150,308 @@
 <body>
     <div class="mainWindow">
         <h1>ASOS Wrapped!</h1>
-        <h3>Name:</h3>
-        <div class="nameBoxArea">
-            <textarea id="nameBox" class="nameBox" placeholder="type it here"></textarea>
+        <div class="page page0">
+            <h3>Name:</h3>
+            <div class="nameBoxArea">
+                <textarea id="nameBox" class="nameBox" placeholder="type it here"></textarea>
+            </div>
+            <button class="submitButton" onclick="onSubmitPressed()">Submit</button>
+
+            <p id="status"></p>
         </div>
-        <button class="submitButton" onclick="onSubmitPressed()">Submit</button>
+        <div class="page page1">
+            <h2 style="margin-top: 2%; margin-bottom: 2%;">Welcome</h2>
+            <h1 class="fillName" style="color: red">HERE!</h1>
+            <h2>To your 2024 ASOS Wrapped!</h2>
+            <img src="imgs/ASOSChristmas.png">
+            <h2>Use the buttons below to navigate</h2>
+        </div>
+        <div class="page page2">
+            <h2>You sent a lot of messages this year!</h2>
+            <h1 class="fillThisYearMessages">HERE</h1>
+            <h2>to be exact!</h2>
+            <h2>This brings your total to:</h2>
+            <h1 class="fillTotalMessages">HERE</h1>
 
-        <p id="status"></p>
+            <h2>That means you've sent</h2>
+            <h1 class="fillPercentMessages">HERE</h1>
+            <h2>of your total messages this year!</h2>
+        </div>
+        <div class="page page3">
+            <h2>You joined the A Slightly Oblivious Server on:</h2>
+            <h1 class="fillJoinDateHere">HERE</h1>
+            <h2>So this year you hit your</h2>
+            <h1 class="fillTotalYearsHere">HERE</h1>
+            <h2>server anniversary!</h2>
+            <h2>This makes you the</h2>
+            <h1 class="fillServerAgePos">HERE</h1>
+            <h2>oldest member of the server!</h2>
+            <p>Average messages per year?</p>
+            <p>Above/below average this year?</p>
+        </div>
+        <div class="page page4">
+            <h2>This year,</h2>
+            <h1 class="fillPinnedMessagesHere">HERE</h1>
+            <h2>of your messages were pinned!</h2>
+            <h2 class="comment" id="pinnedMessagesComment"></h2>
+        </div>
+        <div class="page page5">
+            <h2>But who were you talking to?</h2>
+            <h2>You mentioned people in</h2>
+            <h3>(replied to or pinged)</h3>
+            <h1 class="fillTotalMentionsHere">HERE</h1>
+            <h2>of your messages this year!</h2>
+            <h2 class="comment" id="mentionsComment"></h2>
+        </div>
+        <div class="page page6">
+            <h2>But who did you mention the most this year?</h2>
+            <h1 class="fillMostMentionedThisYear">HERE</h1>
+            <h1 class="fillMostMentionedPersonCount">HERE</h1>
+            <h2 id="matchingMostMentioned">They also mentioned you the most!</h2>
+            <h2 id="matchingNotMostMentioned">They didn't mention you the most :(</h2>
+        </div>
+        <div class="page page7">
+            <h2>Images!</h2>
+            <h1 class="fillImageCountHere">You sent HERE messages this year!</h1>
+            <h2>Here's a selection of some of them!</h2>
+        </div>
     </div>
-</body>
 
-<footer>
+    <div class="nextPageButton" id="nPB">
+        <button onclick="nextPage()">
+            ➡
+        </button>
+    </div>
+    <div class="prevPageButton" id="pPB">
+        <button onclick="prevPage()">
+            ⬅
+        </button>
+    </div>
+
+
     <script>
-        function onSubmitPressed() {
-            console.log("hello!");
-            let ta = document.getElementById("nameBox");
-            let text = ta.value;
-            console.log(text);
-            if (!text.length) {
-                return;
+        let nameList = new Array();
+        let userNameList = new Array();
+
+        var data;
+        var messageData;
+        var currentPerson;
+
+        var currentPage = 0;
+        const totalPages = 8;
+
+        class PersonIntPair {
+            p;
+            i;
+            constructor(_person, _int) {
+                this.p = _person;
+                this.i = _int;
             }
-            if (text != "Dowdall") {
-                document.getElementById("status").innerText = "Incorrect Name";
+
+            person() {
+                return this.p;
             }
-            else {
-                document.getElementById("status").innerText = "";
+
+            int() {
+                return this.i;
             }
         }
 
+        class Person {
+            name = "";
+            username = "";
+            joinDate = "";
+            thisYearMessages = 0;
+            totalMessages = 0;
+            images = new Array();
+            pinnedMessages = 0;
+            imagesMessages = 0;
+
+            mentions = new Map();
+
+            constructor(username, jsonElement) {
+                this.name = jsonElement["name"];
+                this.joinDate = jsonElement["join-date"];
+                jsonElement["image-links"].forEach(imageLink => {
+                    this.images.add(imageLink);
+                });
+                let msgData = messageData[username];
+                this.thisYearMessages = msgData["sent"];
+                this.totalMessages = msgData["total-sent"];
+                this.pinnedMessages = msgData["pins"];
+                this.imagesMessages = msgData["images"];
+
+                userNameList.forEach(element => {
+                    this.mentions.set(element, msgData[element]);
+                });
+
+            }
+
+            mostMentioned() {
+                let mostUsername = "";
+                let mostCount = 0;
+                this.mentions.forEach(function (value, key) {
+                    if (value > mostCount) {
+                        mostUsername = key;
+                        mostCount = value;
+                    }
+                });
+                return new PersonIntPair(mostUsername, mostCount);
+            }
+
+            yearsOnDiscord() {
+                let joinYear = this.joinDate.split("/")[2];
+                let length = 2024 - joinYear;
+                switch (length) {
+                    case 1:
+                        return length + "st";
+                    case 2:
+                        return length + "nd";
+
+                    default:
+                        return length + "th";
+                }
+            }
+
+            totalMentions() {
+                return 0;
+            }
+
+            getMentionsComment() {
+                return "You mentioned everyone this year!";
+                // "You didn't mention everyone this year :("
+            }
+        }
+
+        function onSubmitPressed() {
+            let ta = document.getElementById("nameBox");
+            let text = ta.value;
+            if (!text.length) {
+                return;
+            }
+            if (nameList.includes(text)) {
+                document.getElementById("status").innerText = "";
+                let idx = nameList.indexOf(text);
+                currentPerson = new Person(userNameList[idx], data[userNameList[idx]]);
+                fillData();
+                nextPage();
+                document.getElementById("nPB").style.display = "block";
+                document.getElementById("pPB").style.display = "block";
+            }
+            else {
+                document.getElementById("status").innerText = "Incorrect Name";
+            }
+        }
+
+        function loadData() {
+            var file = new XMLHttpRequest();
+            file.open("GET", "data.json", true);
+            file.onreadystatechange = () => {
+                if (file.readyState == 4) {
+                    var rawText = file.responseText;
+                    data = JSON.parse(rawText);
+                    userNameList = Object.keys(data);
+                    Object.keys(data).forEach((item) => {
+                        nameList.push(data[item]["name"]);
+                    });
+                }
+            }
+            file.send();
+
+            var file2 = new XMLHttpRequest();
+            file2.open("GET", "messageData.json", true);
+            file2.onreadystatechange = () => {
+                if (file2.readyState == 4) {
+                    var rawText = file2.responseText;
+                    messageData = JSON.parse(rawText);
+                }
+            }
+            file2.send();
+        }
+
+        function replaceValuesWith(className, replaceText) {
+            let elems = document.getElementsByClassName(className);
+            for (let i = 0; i < elems.length; ++i) {
+                let text = elems[i].innerText;
+                elems[i].innerText = elems[i].innerText.replace("HERE", replaceText);
+
+            }
+        }
+
+        function setCommentText(idName, comment) {
+            let elem = document.getElementById(idName);
+            elem.innerText = comment;
+        }
+
+        function fillData() {
+            replaceValuesWith("fillName", currentPerson.name)
+            replaceValuesWith("fillThisYearMessages", currentPerson.thisYearMessages)
+            replaceValuesWith("fillTotalMessages", currentPerson.totalMessages)
+            let thisYearMessagePercent = Math.round((currentPerson.thisYearMessages / currentPerson.totalMessages) * 100 * 100) / 100 + '%';
+            replaceValuesWith("fillPercentMessages", thisYearMessagePercent);
+            replaceValuesWith("fillImageCountHere", currentPerson.imagesMessages);
+            replaceValuesWith("fillTotalYearsHere", currentPerson.yearsOnDiscord());
+            replaceValuesWith("fillJoinDateHere", currentPerson.joinDate);
+            const pinnedMessages = currentPerson.pinnedMessages;
+            replaceValuesWith("fillPinnedMessagesHere", pinnedMessages);
+            const pinnedMessageComment = pinnedMessages > 0 ? "You must have said some important stuff!" : "Better luck next year!";
+            setCommentText("pinnedMessagesComment", pinnedMessageComment)
+            replaceValuesWith("fillTotalMentionsHere", currentPerson.totalMentions());
+            setCommentText("mentionsComment", currentPerson.getMentionsComment());
+            let mostMentioned = currentPerson.mostMentioned();
+            replaceValuesWith("fillMostMentionedThisYear", mostMentioned.person());
+            replaceValuesWith("fillMostMentionedPersonCount", mostMentioned.int());
+        }
+
+        function nextPage(params) {
+            if (currentPage >= totalPages) {
+                // end!
+                return;
+            }
+            currentPage++;
+            if (currentPage == totalPages) {
+                // end!
+                return;
+            }
+            for (let i = 0; i < totalPages; ++i) {
+                let elem = document.getElementsByClassName("page" + i)[0];
+                elem.style.display = "none";
+            }
+            let string = "page" + currentPage;
+            console.log(string);
+
+            let elem = document.getElementsByClassName(string)[0];
+            elem.style.display = "block";
+        }
+
+        function prevPage(params) {
+            if (currentPage == 1) {
+                // end!
+                return;
+            }
+            currentPage--;
+            for (let i = 0; i < totalPages; ++i) {
+                let elem = document.getElementsByClassName("page" + i)[0];
+                elem.style.display = "none";
+            }
+            let string = "page" + currentPage;
+            console.log(string);
+
+            let elem = document.getElementsByClassName(string)[0];
+            elem.style.display = "block";
+        }
+
+        loadData();
+        for (let i = 1; i < totalPages; ++i) {
+            let elem = document.getElementsByClassName("page" + i)[0];
+            elem.style.display = "none";
+        }
 
     </script>
+</body>
+
+<footer>
+
 </footer>
 
 </html>
