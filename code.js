@@ -8,7 +8,7 @@ var messageData;
 var currentPerson;
 
 var currentPage = 0;
-const totalPages = 12;
+const totalPages = 13;
 
 class PersonIntPair {
     p;
