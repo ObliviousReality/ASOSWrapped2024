@@ -151,3 +151,33 @@ body {
 .carousel {
     width: 100%;
 }
+
+.summaryBox {
+    font-size: 6vw;
+    /* background-color:#6B16A2; */
+    background-image: linear-gradient(140deg, #6B16A2 0%, #dc0728 75%);
+    width: 100%;
+    border-radius: 2%;
+}
+
+.summaryBox > span {
+    margin-top: 5%;
+}
+
+.summaryBox>table {
+    width: 100%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.summaryBox>table>tbody>tr {
+    margin: 2%;
+}
+
+.summaryBox>table>tbody>tr>th {
+    width: 50%;
+}
+
+.summaryBox>table>tbody>tr>td {
+    width: 50%;
+}

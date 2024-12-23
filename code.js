@@ -8,7 +8,7 @@ var messageData;
 var currentPerson;
 
 var currentPage = 0;
-const totalPages = 11;
+const totalPages = 12;
 
 class PersonIntPair {
     p;
@@ -210,9 +210,10 @@ function setCommentText(idName, comment) {
 }
 
 function fillData() {
-    replaceValuesWith("fillName", currentPerson.name)
-    replaceValuesWith("fillThisYearMessages", currentPerson.thisYearMessages)
-    replaceValuesWith("fillTotalMessages", currentPerson.totalMessages)
+    replaceValuesWith("fillName", currentPerson.name);
+    replaceValuesWith("fillUsername", currentPerson.username);
+    replaceValuesWith("fillThisYearMessages", currentPerson.thisYearMessages);
+    replaceValuesWith("fillTotalMessages", currentPerson.totalMessages);
     const thisYearMessagePercent = Math.round((currentPerson.thisYearMessages / currentPerson.totalMessages) * 100 * 100) / 100 + '%';
     replaceValuesWith("fillPercentMessages", thisYearMessagePercent);
     replaceValuesWith("fillImageCountHere", currentPerson.imagesMessages);
