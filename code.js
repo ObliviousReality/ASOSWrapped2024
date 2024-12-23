@@ -92,7 +92,7 @@ class Person {
 
     getMentionsComment() {
         for (let i = 0; i < userNameList.length; ++i) {
-            if (this.mentions.get(userNameList[i]) == 0) {
+            if ((userNameList[i] != this.username) && this.mentions.get(userNameList[i]) == 0) {
                 return "You didn't mention everyone this year :(";
             }
         }
@@ -125,6 +125,10 @@ class Person {
             }
         }
         return appendNumberSuffix(index);
+    }
+
+    getMentionedSelf() {
+        return this.mentions.get(this.username) > 0;
     }
 }
 
@@ -197,7 +201,6 @@ function replaceValuesWith(className, replaceText) {
     for (let i = 0; i < elems.length; ++i) {
         let text = elems[i].innerText;
         elems[i].innerText = elems[i].innerText.replace("HERE", replaceText);
-
     }
 }
 
@@ -238,6 +241,8 @@ function fillData() {
     replaceValuesWith("fillTotalMessagesIndex", currentPerson.getMostMessagesAllTimeIndex());
     const mentionsPercent = Math.round((currentPerson.getMentionsCount() / currentPerson.thisYearMessages) * 100 * 100) / 100 + '%';
     replaceValuesWith("fillMentionsPercent", mentionsPercent);
+    const selfMentionMessage = currentPerson.getMentionedSelf() ? "You mentioned yourself this year!" : "You didn't mention yourself this year - better luck in 2025!";
+    setCommentText("mentionedYourselfComment", selfMentionMessage);
 
     showImage();
 }
