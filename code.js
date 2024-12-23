@@ -8,7 +8,7 @@ var messageData;
 var currentPerson;
 
 var currentPage = 0;
-const totalPages = 9;
+const totalPages = 10;
 
 class PersonIntPair {
     p;
@@ -105,6 +105,28 @@ class Person {
                 return appendNumberSuffix(i + 1);
             }
         }
+    }
+
+    getMostMessagesThisYearIndex() {
+        let index = 1;
+        for (let i = 0; i < userNameList.length; ++i) {
+            if (people.get(userNameList[i]).thisYearMessages > this.thisYearMessages)
+            {
+                index++;
+            }
+        }
+        return appendNumberSuffix(index + 1);
+    }
+
+    getMostMessagesAllTimeIndex() {
+        let index = 1;
+        for (let i = 0; i < userNameList.length; ++i) {
+            if (people.get(userNameList[i]).totalMessages > this.totalMessages)
+            {
+                index++;
+            }
+        }
+        return appendNumberSuffix(index);
     }
 }
 
@@ -214,6 +236,8 @@ function fillData() {
         : "Their attention belongs to " + otherMostMentioned.realName();
     setCommentText("mentionedEqualityComment", mentionedEqualityComment);
     setCommentText("mentionedEqualityComment2", mentionedEqualityComment2);
+    replaceValuesWith("fillThisYearMessagesIndex", currentPerson.getMostMessagesThisYearIndex());
+    replaceValuesWith("fillTotalMessagesIndex", currentPerson.getMostMessagesAllTimeIndex());
 }
 
 function nextPage(params) {
