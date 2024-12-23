@@ -8,7 +8,7 @@ var messageData;
 var currentPerson;
 
 var currentPage = 0;
-const totalPages = 10;
+const totalPages = 11;
 
 class PersonIntPair {
     p;
@@ -48,7 +48,7 @@ class Person {
         this.username = username;
         this.joinDate = jsonElement["join-date"];
         jsonElement["image-links"].forEach(imageLink => {
-            this.images.add(imageLink);
+            this.images.push(imageLink);
         });
         let msgData = messageData[username];
         this.thisYearMessages = msgData["sent"];
@@ -110,8 +110,7 @@ class Person {
     getMostMessagesThisYearIndex() {
         let index = 1;
         for (let i = 0; i < userNameList.length; ++i) {
-            if (people.get(userNameList[i]).thisYearMessages > this.thisYearMessages)
-            {
+            if (people.get(userNameList[i]).thisYearMessages > this.thisYearMessages) {
                 index++;
             }
         }
@@ -121,8 +120,7 @@ class Person {
     getMostMessagesAllTimeIndex() {
         let index = 1;
         for (let i = 0; i < userNameList.length; ++i) {
-            if (people.get(userNameList[i]).totalMessages > this.totalMessages)
-            {
+            if (people.get(userNameList[i]).totalMessages > this.totalMessages) {
                 index++;
             }
         }
@@ -239,7 +237,25 @@ function fillData() {
     replaceValuesWith("fillThisYearMessagesIndex", currentPerson.getMostMessagesThisYearIndex());
     replaceValuesWith("fillTotalMessagesIndex", currentPerson.getMostMessagesAllTimeIndex());
     const mentionsPercent = Math.round((currentPerson.getMentionsCount() / currentPerson.thisYearMessages) * 100 * 100) / 100 + '%';
-    replaceValuesWith("fillMentionsPercent", mentionsPercent)
+    replaceValuesWith("fillMentionsPercent", mentionsPercent);
+
+    showImage();
+}
+
+let imageIdx = 0;
+
+function showImage() {
+    const len = currentPerson.images.length;
+    if (!len) {
+        return;
+    }
+    let carousel = document.getElementsByClassName("carousel")[0];
+    imageIdx++;
+    if (imageIdx == len) {
+        imageIdx = 0;
+    }
+    carousel.src = currentPerson.images[imageIdx];
+    setTimeout(showImage, 5000);
 }
 
 function nextPage(params) {

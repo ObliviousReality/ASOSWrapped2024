@@ -143,3 +143,7 @@
         border: 0;
         font-size: 10vw;
     }
+
+    .carousel {
+        width: 100%;
+    }
