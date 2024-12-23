@@ -212,7 +212,7 @@ function fillData() {
     replaceValuesWith("fillName", currentPerson.name)
     replaceValuesWith("fillThisYearMessages", currentPerson.thisYearMessages)
     replaceValuesWith("fillTotalMessages", currentPerson.totalMessages)
-    let thisYearMessagePercent = Math.round((currentPerson.thisYearMessages / currentPerson.totalMessages) * 100 * 100) / 100 + '%';
+    const thisYearMessagePercent = Math.round((currentPerson.thisYearMessages / currentPerson.totalMessages) * 100 * 100) / 100 + '%';
     replaceValuesWith("fillPercentMessages", thisYearMessagePercent);
     replaceValuesWith("fillImageCountHere", currentPerson.imagesMessages);
     replaceValuesWith("fillTotalYearsHere", currentPerson.yearsOnDiscord());
@@ -238,6 +238,8 @@ function fillData() {
     setCommentText("mentionedEqualityComment2", mentionedEqualityComment2);
     replaceValuesWith("fillThisYearMessagesIndex", currentPerson.getMostMessagesThisYearIndex());
     replaceValuesWith("fillTotalMessagesIndex", currentPerson.getMostMessagesAllTimeIndex());
+    const mentionsPercent = Math.round((currentPerson.getMentionsCount() / currentPerson.thisYearMessages) * 100 * 100) / 100 + '%';
+    replaceValuesWith("fillMentionsPercent", mentionsPercent)
 }
 
 function nextPage(params) {
