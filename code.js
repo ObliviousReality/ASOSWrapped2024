@@ -8,7 +8,7 @@ var messageData;
 var currentPerson;
 
 var currentPage = 0;
-const totalPages = 8;
+const totalPages = 9;
 
 class PersonIntPair {
     p;
@@ -20,6 +20,10 @@ class PersonIntPair {
 
     person() {
         return this.p;
+    }
+
+    realName() {
+        return people.get(this.p).name;
     }
 
     int() {
@@ -76,13 +80,23 @@ class Person {
         return appendNumberSuffix(length);
     }
 
-    totalMentions() {
-        return 0;
+    getMentionsCount() {
+        let count = 0;
+        console.log(this.mentions);
+
+        for (let i = 0; i < userNameList.length; ++i) {
+            count += this.mentions.get(userNameList[i]);
+        }
+        return count;
     }
 
     getMentionsComment() {
+        for (let i = 0; i < userNameList.length; ++i) {
+            if (this.mentions.get(userNameList[i]) == 0) {
+                return "You didn't mention everyone this year :(";
+            }
+        }
         return "You mentioned everyone this year!";
-        // "You didn't mention everyone this year :("
     }
 
     getServerAgePos() {
@@ -100,6 +114,8 @@ function appendNumberSuffix(string) {
             return string + "st";
         case 2:
             return string + "nd";
+        case 3:
+            return string + "rd";
 
         default:
             return string + "th";
@@ -184,11 +200,20 @@ function fillData() {
     replaceValuesWith("fillPinnedMessagesHere", pinnedMessages);
     const pinnedMessageComment = pinnedMessages > 0 ? "You must have said some important stuff!" : "Better luck next year!";
     setCommentText("pinnedMessagesComment", pinnedMessageComment)
-    replaceValuesWith("fillTotalMentionsHere", currentPerson.totalMentions());
+    replaceValuesWith("fillTotalMentionsHere", currentPerson.getMentionsCount());
     setCommentText("mentionsComment", currentPerson.getMentionsComment());
     let mostMentioned = currentPerson.mostMentioned();
-    replaceValuesWith("fillMostMentionedThisYear", mostMentioned.person());
+    replaceValuesWith("fillMostMentionedThisYear", mostMentioned.realName());
     replaceValuesWith("fillMostMentionedPersonCount", mostMentioned.int());
+    const otherMostMentioned = people.get(mostMentioned.person()).mostMentioned();
+    const mentionedEqualityComment = otherMostMentioned.person() == currentPerson.username
+        ? "They mentioned you the most!"
+        : "They mentioned some else the most...";
+    const mentionedEqualityComment2 = otherMostMentioned.person() == currentPerson.username
+        ? "You must be in sync!"
+        : "Their attention belongs to " + otherMostMentioned.realName();
+    setCommentText("mentionedEqualityComment", mentionedEqualityComment);
+    setCommentText("mentionedEqualityComment2", mentionedEqualityComment2);
 }
 
 function nextPage(params) {
