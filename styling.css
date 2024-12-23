@@ -1,153 +1,153 @@
-    body {
-        background-color: #121212;
-        font-family: Bahnschrift;
-        color: white;
-        margin: 0;
-        transition-duration: 5s;
-    }
+body {
+    background-color: #121212;
+    font-family: Bahnschrift;
+    color: white;
+    margin: 0;
+    transition-duration: 5s;
+}
 
-    .mainWindow {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        text-align: center;
-        padding: 0;
-    }
+.mainWindow {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 0;
+}
 
-    .mainWindow>h1 {
-        background-color: #6B16A2;
-        font-size: 10vw;
-        padding: 10%;
-        margin: 0;
-    }
+.mainWindow>h1 {
+    background-color: #6B16A2;
+    font-size: 10vw;
+    padding: 10%;
+    margin: 0;
+}
 
-    .page {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        text-align: center;
-        padding: 0;
-        transition-duration: 5s;
-        width: 80%;
-        padding-left: 10%;
-    }
+.page {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 0;
+    transition-duration: 5s;
+    width: 80%;
+    padding-left: 10%;
+}
 
-    .page>h1 {
-        font-size: 10vw;
-        color: red;
-    }
+.page>h1 {
+    font-size: 10vw;
+    color: red;
+}
 
-    .page>h2 {
-        font-size: 6vw;
-    }
+.page>h2 {
+    font-size: 6vw;
+}
 
-    .page0>h3 {
-        margin: 50% 0 10% 0;
-        font-size: 6vw;
-    }
+.page0>h3 {
+    margin: 50% 0 10% 0;
+    font-size: 6vw;
+}
 
-    .nameBoxArea {
-        width: 60%;
-        margin-left: 20%;
-        padding: 0;
-        text-align: center;
-    }
+.nameBoxArea {
+    width: 60%;
+    margin-left: 20%;
+    padding: 0;
+    text-align: center;
+}
 
-    .nameBox {
-        text-align: center;
-        font-size: 6vw;
-        border: #6B16A2 1px solid;
-        border-radius: 4%;
-        background-color: transparent;
-        color: #6B16A2;
-        width: 100%;
-    }
+.nameBox {
+    text-align: center;
+    font-size: 6vw;
+    border: #6B16A2 1px solid;
+    border-radius: 4%;
+    background-color: transparent;
+    color: #6B16A2;
+    width: 100%;
+}
 
-    .submitButton {
-        width: 60%;
-        margin-left: 20%;
-        border: none;
-        padding: 2% 0 2% 0;
-        margin-top: 2%;
-        font-size: 4vw;
-        font-family: Bahnschrift;
-        background-color: #e32128;
-    }
+.submitButton {
+    width: 60%;
+    margin-left: 20%;
+    border: none;
+    padding: 2% 0 2% 0;
+    margin-top: 2%;
+    font-size: 4vw;
+    font-family: Bahnschrift;
+    background-color: #e32128;
+}
 
-    .submitButton:hover {
-        background-color: rgb(221, 57, 63);
-    }
+.submitButton:hover {
+    background-color: rgb(221, 57, 63);
+}
 
-    #status {
-        font-size: 6vw;
-    }
+#status {
+    font-size: 6vw;
+}
 
-    .heading {
-        color: #6B16A2;
-    }
+.heading {
+    color: #6B16A2;
+}
 
-    .comment {
-        color: blue;
-    }
+.comment {
+    color: blue;
+}
 
-    .comment2 {
-        color: green;
-    }
+.comment2 {
+    color: green;
+}
 
-    .page1 {
-        display: none;
-    }
+.page1 {
+    display: none;
+}
 
-    .page1>h1 {
-        font-size: 10vw;
-        margin: 2%;
-    }
+.page1>h1 {
+    font-size: 10vw;
+    margin: 2%;
+}
 
-    .page1>h2 {
-        margin-top: 10%;
-    }
+.page1>h2 {
+    margin-top: 10%;
+}
 
-    .page1>img {
-        width: 80%;
-    }
+.page1>img {
+    width: 80%;
+}
 
-    .page2>h1 {
-        color: red;
-        font-size: 10vw;
-    }
+.page2>h1 {
+    color: red;
+    font-size: 10vw;
+}
 
-    .nextPageButton {
-        display: none;
-        background-color: #6B16A2;
-        position: fixed;
-        bottom: 5em;
-        right: 5em;
-        padding: 10px;
-        border-radius: 20px;
-    }
+.nextPageButton {
+    display: none;
+    background-color: #6B16A2;
+    position: fixed;
+    bottom: 5em;
+    right: 5em;
+    padding: 10px;
+    border-radius: 20px;
+}
 
-    .nextPageButton>button {
-        background-color: transparent;
-        border: 0;
-        font-size: 10vw;
-    }
+.nextPageButton>button {
+    background-color: transparent;
+    border: 0;
+    font-size: 10vw;
+}
 
-    .prevPageButton {
-        display: none;
-        background-color: #6B16A2;
-        position: fixed;
-        bottom: 5em;
-        left: 5em;
-        padding: 10px;
-        border-radius: 20px;
-    }
+.prevPageButton {
+    display: none;
+    background-color: #6B16A2;
+    position: fixed;
+    bottom: 5em;
+    left: 5em;
+    padding: 10px;
+    border-radius: 20px;
+}
 
-    .prevPageButton>button {
-        background-color: transparent;
-        border: 0;
-        font-size: 10vw;
-    }
+.prevPageButton>button {
+    background-color: transparent;
+    border: 0;
+    font-size: 10vw;
+}
 
-    .carousel {
-        width: 100%;
-    }
+.carousel {
+    width: 100%;
+}
