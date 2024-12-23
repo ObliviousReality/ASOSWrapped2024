@@ -1,6 +1,8 @@
 let nameList = new Array();
 let userNameList = new Array();
 
+let people = new Map();
+
 var data;
 var messageData;
 var currentPerson;
@@ -39,6 +41,7 @@ class Person {
 
     constructor(username, jsonElement) {
         this.name = jsonElement["name"];
+        this.username = username;
         this.joinDate = jsonElement["join-date"];
         jsonElement["image-links"].forEach(imageLink => {
             this.images.add(imageLink);
@@ -70,15 +73,7 @@ class Person {
     yearsOnDiscord() {
         let joinYear = this.joinDate.split("/")[2];
         let length = 2024 - joinYear;
-        switch (length) {
-            case 1:
-                return length + "st";
-            case 2:
-                return length + "nd";
-
-            default:
-                return length + "th";
-        }
+        return appendNumberSuffix(length);
     }
 
     totalMentions() {
@@ -88,6 +83,26 @@ class Person {
     getMentionsComment() {
         return "You mentioned everyone this year!";
         // "You didn't mention everyone this year :("
+    }
+
+    getServerAgePos() {
+        for (let i = 0; i < userNameList.length; ++i) {
+            if (userNameList[i] == this.username) {
+                return appendNumberSuffix(i + 1);
+            }
+        }
+    }
+}
+
+function appendNumberSuffix(string) {
+    switch (string) {
+        case 1:
+            return string + "st";
+        case 2:
+            return string + "nd";
+
+        default:
+            return string + "th";
     }
 }
 
@@ -100,7 +115,7 @@ function onSubmitPressed() {
     if (nameList.includes(text)) {
         document.getElementById("status").innerText = "";
         let idx = nameList.indexOf(text);
-        currentPerson = new Person(userNameList[idx], data[userNameList[idx]]);
+        currentPerson = people.get(userNameList[idx]);
         fillData();
         nextPage();
         document.getElementById("nPB").style.display = "block";
@@ -132,6 +147,10 @@ function loadData() {
         if (file2.readyState == 4) {
             var rawText = file2.responseText;
             messageData = JSON.parse(rawText);
+            userNameList.forEach((username) => {
+                let p = new Person(username, data[username]);
+                people.set(username, p);
+            });
         }
     }
     file2.send();
@@ -160,6 +179,7 @@ function fillData() {
     replaceValuesWith("fillImageCountHere", currentPerson.imagesMessages);
     replaceValuesWith("fillTotalYearsHere", currentPerson.yearsOnDiscord());
     replaceValuesWith("fillJoinDateHere", currentPerson.joinDate);
+    replaceValuesWith("fillServerAgePos", currentPerson.getServerAgePos());
     const pinnedMessages = currentPerson.pinnedMessages;
     replaceValuesWith("fillPinnedMessagesHere", pinnedMessages);
     const pinnedMessageComment = pinnedMessages > 0 ? "You must have said some important stuff!" : "Better luck next year!";
