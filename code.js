@@ -150,16 +150,47 @@ function onSubmitPressed() {
     let ta = document.getElementById("nameBox");
     let text = ta.value;
     if (!text.length) {
+        document.getElementById("status").innerText = "Type something!";
         return;
     }
-    if (nameList.includes(text)) {
+
+    const lowerCaseText = text.toString().toLowerCase();
+    if (lowerCaseText == "jonno") {
+        text = "Jonathan";
+    }
+    else if (lowerCaseText == "ali") {
+        text = "Alistair";
+    }
+    else if ((lowerCaseText == "matt") || (lowerCaseText == "matthew")) {
+        text = "Dowdall";
+    }
+    else if (lowerCaseText == "doug") {
+        text = "Douglas";
+    }
+    else if (lowerCaseText == "oliver") {
+        text = "Oli";
+    }
+    else if (lowerCaseText == "mimi") {
+        text = "Miya";
+    }
+    else if (lowerCaseText == "J") {
+        text = "Jay";
+    }
+
+    if (nameList.find((item) => {
+        return item.toString().toLowerCase() == text.toString().toLowerCase();
+    })) {
         document.getElementById("status").innerText = "";
+        text = String(text).charAt(0).toUpperCase() + String(text).slice(1);
         let idx = nameList.indexOf(text);
         currentPerson = people.get(userNameList[idx]);
         fillData();
         nextPage();
         document.getElementById("nPB").style.display = "block";
         document.getElementById("pPB").style.display = "block";
+    }
+    else if ((lowerCaseText == "humpmefuck") || (lowerCaseText == "hump me fuck")) {
+        document.getElementById("status").innerText = "Really? Time to confess, I think";
     }
     else {
         document.getElementById("status").innerText = "Incorrect Name";
