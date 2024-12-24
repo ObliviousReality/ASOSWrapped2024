@@ -264,7 +264,7 @@ function showImage() {
     setTimeout(showImage, 5000);
 }
 
-function nextPage(params) {
+function nextPage() {
     if (currentPage >= totalPages) {
         // end!
         return;
@@ -282,10 +282,10 @@ function nextPage(params) {
     console.log(string);
 
     let elem = document.getElementsByClassName(string)[0];
-    elem.style.display = "block";
+    elem.style.display = currentPage != 12 ? "block" : "flex";
 }
 
-function prevPage(params) {
+function prevPage() {
     if (currentPage == 1) {
         // end!
         return;
@@ -299,7 +299,12 @@ function prevPage(params) {
     console.log(string);
 
     let elem = document.getElementsByClassName(string)[0];
-    elem.style.display = "block";
+    elem.style.display = currentPage != 12 ? "block" : "flex";
+}
+
+function backToStart(params) {
+    currentPage = 2;
+    prevPage();
 }
 
 function onLoad() {
