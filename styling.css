@@ -120,10 +120,18 @@ body {
     display: none;
     background-color: #6B16A2;
     position: fixed;
-    bottom: 5em;
-    right: 5em;
+    bottom: 2.5em;
+    right: 2.5em;
     padding: 10px;
     border-radius: 20px;
+}
+
+.nextPageButton:hover {
+    cursor: pointer;
+}
+
+.nextPageButton>button:hover {
+    cursor: pointer;
 }
 
 .nextPageButton>button {
@@ -136,10 +144,18 @@ body {
     display: none;
     background-color: #6B16A2;
     position: fixed;
-    bottom: 5em;
-    left: 5em;
+    bottom: 2.5em;
+    left: 2.5em;
     padding: 10px;
     border-radius: 20px;
+}
+
+.prevPageButton:hover {
+    cursor: pointer;
+}
+
+.prevPageButton>button:hover {
+    cursor: pointer;
 }
 
 .prevPageButton>button {
@@ -154,13 +170,12 @@ body {
 
 .summaryBox {
     font-size: 6vw;
-    /* background-color:#6B16A2; */
     background-image: linear-gradient(140deg, #6B16A2 0%, #dc0728 75%);
     width: 100%;
     border-radius: 2%;
 }
 
-.summaryBox > span {
+.summaryBox>span {
     margin-top: 5%;
 }
 
@@ -180,4 +195,89 @@ body {
 
 .summaryBox>table>tbody>tr>td {
     width: 50%;
+}
+
+.finalGif {
+    width: 100%;
+    margin-top: 5%;
+}
+
+.page12>img {
+    width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+    .mainWindow {
+        width: 100%;
+        margin-left: 0%;
+        margin-top: 6%;
+    }
+
+    img {
+        width: 30%;
+    }
+
+    .mainWindow>h1 {
+        font-size: 5vw;
+        padding: 0%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .page0>h3 {
+        margin: 0;
+        font-size: 3vw;
+    }
+
+    .nameBox {
+        text-align: center;
+        font-size: 3vw;
+    }
+
+    .page0>img {
+        display: none;
+    }
+
+    .page>p {
+        margin: 0;
+    }
+
+    .page>h1 {
+        font-size: 3vw;
+        color: red;
+    }
+
+    .page>h2 {
+        margin: 1%;
+        font-size: 2vw;
+    }
+
+    .page1>img {
+        width: 30%;
+    }
+
+    .page1>h1 {
+        font-size: 3vw;
+        margin: 2%;
+    }
+
+    .carousel {
+        width: 30%;
+    }
+
+    .summaryBox {
+        font-size: 2vw;
+        width: 50%;
+        margin-left: 25%;
+    }
+
+    .finalGif {
+        width: 30%;
+    }
+
+    .page12>img {
+        width: 30%;
+    }
 }
