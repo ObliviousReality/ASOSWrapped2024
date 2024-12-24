@@ -300,3 +300,19 @@ body {
         font-size: 2vw;
     }
 }
+
+@media all and (max-height: 700px) {
+    .prevPageButton {
+        bottom: 0em;
+        left: 0em;
+    }
+
+    .nextPageButton {
+        bottom: 0em;
+        right: 0em;
+    }
+
+    .page {
+        margin-bottom: 20%;
+    }
+}
