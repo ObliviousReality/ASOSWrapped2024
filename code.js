@@ -275,7 +275,10 @@ function fillData() {
     replaceValuesWith("fillMentionsPercent", mentionsPercent);
     const selfMentionMessage = currentPerson.getMentionedSelf() ? "You mentioned yourself this year!" : "You didn't mention yourself this year - better luck in 2025!";
     setCommentText("mentionedYourselfComment", selfMentionMessage);
-
+    const imageComment = currentPerson.images.length > 1
+        ? "Images selected at random!"
+        : "You only sent one image this year Rowena :p";
+    setCommentText("imageComment", imageComment)
     showImage();
 }
 
