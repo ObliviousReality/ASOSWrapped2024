@@ -231,8 +231,8 @@ function fillData() {
     replaceValuesWith("fillMostMentionedPersonCount", mostMentioned.int());
     const otherMostMentioned = people.get(mostMentioned.person()).mostMentioned();
     const mentionedEqualityComment = otherMostMentioned.person() == currentPerson.username
-        ? "They mentioned you the most!"
-        : "They mentioned some else the most...";
+        ? mostMentioned.realName() + " mentioned you the most!"
+        : mostMentioned.realName() + " mentioned someone else the most...";
     const mentionedEqualityComment2 = otherMostMentioned.person() == currentPerson.username
         ? "You must be in sync!"
         : "Their attention belongs to " + otherMostMentioned.realName();
