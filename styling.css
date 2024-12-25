@@ -1,6 +1,6 @@
 body {
     background-color: #121212;
-    font-family: Bahnschrift;
+    font-family: Arial;
     color: white;
     margin: 0;
     transition-duration: 5s;
@@ -71,7 +71,7 @@ body {
     padding: 2% 0 2% 0;
     margin-top: 2%;
     font-size: 4vw;
-    font-family: Bahnschrift;
+    font-family: Arial;
     background-color: #e32128;
 }
 
@@ -216,7 +216,7 @@ body {
 .page12>button {
     margin-top: 1%;
     text-align: center;
-    font-family: Bahnschrift;
+    font-family: Arial;
     font-size: 6vw;
     background-color: #dc0728;
     border: none;
