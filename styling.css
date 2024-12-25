@@ -30,6 +30,7 @@ body {
     transition-duration: 5s;
     width: 80%;
     padding-left: 10%;
+    margin-bottom: 20%;
 }
 
 .page>h1 {
@@ -120,8 +121,8 @@ body {
     display: none;
     background-color: #6B16A2;
     position: fixed;
-    bottom: 2.5em;
-    right: 2.5em;
+    bottom: 0.5em;
+    right: 0.5em;
     padding: 10px;
     border-radius: 20px;
 }
@@ -144,8 +145,8 @@ body {
     display: none;
     background-color: #6B16A2;
     position: fixed;
-    bottom: 2.5em;
-    left: 2.5em;
+    bottom: 0.5em;
+    left: 0.5em;
     padding: 10px;
     border-radius: 20px;
 }
@@ -255,6 +256,10 @@ body {
         display: none;
     }
 
+    .page {
+        margin-bottom: 0%;
+    }
+
     .page>p {
         margin: 0;
     }
@@ -299,20 +304,14 @@ body {
     .page12>button {
         font-size: 2vw;
     }
-}
 
-@media all and (max-height: 700px) {
     .prevPageButton {
-        bottom: 0em;
-        left: 0em;
+        bottom: 2.5em;
+        left: 2.5em;
     }
 
     .nextPageButton {
-        bottom: 0em;
-        right: 0em;
-    }
-
-    .page {
-        margin-bottom: 20%;
+        bottom: 2.5em;
+        right: 2.5em;
     }
 }
